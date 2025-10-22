@@ -63,8 +63,7 @@ export const filterTasks = (tasks, filters) => {
   if (filters.search) {
     const searchLower = filters.search.toLowerCase();
     filtered = filtered.filter(task =>
-      task.title.toLowerCase().includes(searchLower) ||
-      (task.description && task.description.toLowerCase().includes(searchLower))
+      task.title.toLowerCase().includes(searchLower)
     );
   }
   

@@ -25,7 +25,7 @@ router.get('/', authenticate, async (req, res) => {
     if (search) {
       const searchRegex = new RegExp(search, 'i');
       tasks = tasks.filter(task => 
-        searchRegex.test(task.title) || searchRegex.test(task.description)
+        searchRegex.test(task.title)
       );
     }
 
