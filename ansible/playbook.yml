@@ -1,0 +1,18 @@
+---
+- name: Deploy Taskify
+  hosts: localhost
+  tasks:
+    - name: Stop old containers
+      shell: |
+        cd ..
+        docker compose down || true
+        docker rm -f taskify-server taskify-client || true
+        docker network prune -f || true
+      
+    - name: Start application
+      shell: |
+        export MONGODB_URI="{{ ansible_env.MONGODB_URI }}"
+        export JWT_SECRET="{{ ansible_env.JWT_SECRET }}"
+        docker compose up -d --force-recreate --pull always
+      args:
+        chdir: ..
